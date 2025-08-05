@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Verse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text" id="loadingText"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Navigation -->
+        <nav>
+            <a href="#home" class="nav-link">HOME</a>
+            <a href="#services" class="nav-link">SERVICES</a>
+            <a href="#work" class="nav-link">OUR WORK</a>
+            <a href="#contact" class="nav-link">CONTACT US</a>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <!-- Background Silhouettes -->
+            <div class="silhouette samurai-left"></div>
+            <div class="silhouette pagoda-right"></div>
+
+            <!-- Logo and Title -->
+            <div class="logo-container">
+                <div class="sun-background"></div>
+                <h1 class="main-title">
+                    Developer<span class="v-logo">V</span>erse
+                </h1>
+            </div>
+
+            <!-- Coming Soon Section -->
+            <div class="coming-soon">
+                <h2 class="coming-soon-title">COMING SOON</h2>
+
+                <!-- Countdown Timer -->
+                <div class="countdown">
+                    <div class="time-box">
+                        <div class="time-number" id="days">5</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-number" id="hours">0</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-number" id="minutes">0</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-number" id="seconds">0</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+
+                <!-- Contact Button -->
+                <a href="#contact" class="contact-btn" id="heroContactBtn">
+                    📱 CONTACT FOR PROJECT
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" id="services">
+            <div class="services-container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">We provide comprehensive digital solutions</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Website Development</h3>
+                        <p>Custom websites built with modern technologies. Responsive, fast, and SEO-optimized solutions
+                            for your business needs.</p>
+                        <ul class="service-features">
+                            <li>Responsive Design</li>
+                            <li>SEO Optimization</li>
+                            <li>Fast Loading</li>
+                            <li>Modern UI/UX</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>App Development</h3>
+                        <p>Native and cross-platform mobile applications for iOS and Android with seamless user
+                            experience.</p>
+                        <ul class="service-features">
+                            <li>iOS & Android</li>
+                            <li>Cross-platform</li>
+                            <li>User-friendly</li>
+                            <li>Performance Optimized</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <h3>Student & College Projects</h3>
+                        <p>Academic projects, assignments, and final year projects with complete documentation and
+                            presentation.</p>
+                        <ul class="service-features">
+                            <li>Complete Documentation</li>
+                            <li>Source Code</li>
+                            <li>Presentation Support</li>
+                            <li>Academic Standards</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">💌</div>
+                        <h3>Invitation Card Designing</h3>
+                        <p>Beautiful and creative invitation cards for weddings, events, and special occasions with
+                            custom designs.</p>
+                        <ul class="service-features">
+                            <li>Custom Designs</li>
+                            <li>High Resolution</li>
+                            <li>Print Ready</li>
+                            <li>Multiple Formats</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work Section -->
+        <section class="work-section" id="work">
+            <div class="work-container">
+                <h2 class="section-title">Our Work</h2>
+                <p class="section-subtitle">Showcasing our latest projects and achievements</p>
+
+                <div class="work-categories">
+                    <button class="category-btn active" data-category="all">All Projects</button>
+                    <button class="category-btn" data-category="websites">Websites</button>
+                    <button class="category-btn" data-category="student">Student Projects</button>
+                </div>
+
+                <div class="work-grid">
+                    <!-- Website Projects -->
+                    <div class="work-card" data-category="websites">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Swami Green Website">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Visit</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Swami Green Website</h3>
+                            <p>Eco-friendly website with modern design and sustainable features</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="websites">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Marconi Website">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Visit</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Marconi Website</h3>
+                            <p>Professional business website with advanced functionality</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Projects -->
+                    <div class="work-card" data-category="student">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Reclaim Tour & Travel">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Demo</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Reclaim Tour & Travel</h3>
+                            <p>Complete travel booking system with user management</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="student">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Course Cloud">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Demo</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Course Cloud</h3>
+                            <p>Online learning management system for educational institutions</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">Django</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="student">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Read Vault">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Demo</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Read Vault</h3>
+                            <p>Digital library management system with book tracking</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="work-card" data-category="student">
+                        <div class="work-image">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Pass Vault">
+                            <div class="work-overlay">
+                                <div class="work-buttons">
+                                    <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Demo</a>
+                                    <a href="#" class="work-btn details-btn">📋 Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-content">
+                            <h3>Pass Vault</h3>
+                            <p>Secure password management application with encryption</p>
+                            <div class="work-tech">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Encryption</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <h2 class="contact-title">Contact Us</h2>
+                <p class="contact-subtitle">Get in touch for your next project</p>
+
+                <div class="contact-content">
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="project">Project Type *</label>
+                                <select id="project" name="project" required>
+                                    <option value="">Select Project Type</option>
+                                    <option value="web-development">Web Development</option>
+                                    <option value="mobile-app">Mobile App Development</option>
+                                    <option value="ui-ux-design">UI/UX Design</option>
+                                    <option value="e-commerce">E-commerce Website</option>
+                                    <option value="student-project">Student Project</option>
+                                    <option value="invitation-design">Invitation Card Design</option>
+                                    <option value="custom-software">Custom Software</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Project Details *</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    placeholder="Tell us about your project requirements, timeline, and budget..."></textarea>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="submit" class="submit-btn">
+                                    📧 Send Email
+                                </button>
+                                <button type="button" class="whatsapp-btn" id="whatsappBtn">
+                                    📱 WhatsApp
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div class="success-message" id="successMessage">
+                            <div class="success-icon">✅</div>
+                            <h3>Message Sent Successfully!</h3>
+                            <p>We'll get back to you within 24 hours.</p>
+                            <button class="close-success" id="closeSuccess">Close</button>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>developerverse@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📱</div>
+                            <div class="info-content">
+                                <h4>WhatsApp</h4>
+                                <p>+91 8767884273</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">⏰</div>
+                            <div class="info-content">
+                                <h4>Response Time</h4>
+                                <p>Within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🚀</div>
+                            <div class="info-content">
+                                <h4>Services</h4>
+                                <p>Web & Mobile Development</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer-section">
+            <div class="footer-container">
+                <!-- Footer Top -->
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <h2>Developer<span class="footer-v-logo">V</span>erse</h2>
+                        </div>
+                        <p class="footer-description">
+                            Transforming ideas into digital reality. We create innovative web solutions, mobile
+                            applications, and provide comprehensive development services for businesses and students.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <span class="social-icon">📘</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <span class="social-icon">🐦</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <span class="social-icon">📷</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <span class="social-icon">💼</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="GitHub">
+                                <span class="social-icon">🐙</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h3>Services</h3>
+                            <ul>
+                                <li><a href="#services">Website Development</a></li>
+                                <li><a href="#services">Mobile App Development</a></li>
+                                <li><a href="#services">Student Projects</a></li>
+                                <li><a href="#services">Invitation Design</a></li>
+                                <li><a href="#services">Custom Software</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#services">Services</a></li>
+                                <li><a href="#work">Our Work</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                                <li><a href="#about">About Us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Technologies</h3>
+                            <ul>
+                                <li><a href="#">React & Next.js</a></li>
+                                <li><a href="#">Node.js & Express</a></li>
+                                <li><a href="#">Python & Django</a></li>
+                                <li><a href="#">Mobile Development</a></li>
+                                <li><a href="#">Database Design</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Contact Info</h3>
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <span>developerverse@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span>+91 8767884273</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">⏰</span>
+                                <span>24/7 Support</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🌍</span>
+                                <span>Worldwide Service</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 Developer Verse. All rights reserved.</p>
+                        </div>
+                        <div class="footer-legal">
+                            <a href="#privacy">Privacy Policy</a>
+                            <a href="#terms">Terms of Service</a>
+                            <a href="#cookies">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back to Top Button -->
+                <button class="back-to-top" id="backToTop" aria-label="Back to top">
+                    <span>⬆️</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
