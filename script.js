@@ -87,7 +87,7 @@ ${formObject.message}
         `;
 
     // Create mailto link
-    const mailtoLink = `mailto:developerverse@gmail.com?subject=${encodeURIComponent(
+    const mailtoLink = `mailto:developerverses@gmail.com?subject=${encodeURIComponent(
       emailSubject
     )}&body=${encodeURIComponent(emailBody)}`;
 
