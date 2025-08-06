@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer Verse</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,11 +20,41 @@
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <!-- Navigation -->
-        <nav>
-            <a href="#home" class="nav-link">HOME</a>
-            <a href="#services" class="nav-link">SERVICES</a>
-            <a href="#work" class="nav-link">OUR WORK</a>
-            <a href="#contact" class="nav-link">CONTACT US</a>
+        <nav class="navigation" id="navigation">
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <span class="logo-text">
+                        Developer<span class="logo-v">V</span>erse
+                    </span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="nav-menu desktop-menu">
+                    <button class="nav-link" data-target="home">HOME</button>
+                    <button class="nav-link" data-target="services">SERVICES</button>
+                    <button class="nav-link" data-target="work">OUR WORK</button>
+                    <button class="nav-link" data-target="contact">CONTACT US</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <button class="mobile-nav-link" data-target="home">HOME</button>
+                    <button class="mobile-nav-link" data-target="services">SERVICES</button>
+                    <button class="mobile-nav-link" data-target="work">OUR WORK</button>
+                    <button class="mobile-nav-link" data-target="contact">CONTACT US</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
         </nav>
 
         <!-- Hero Section -->
@@ -34,7 +67,9 @@
             <div class="logo-container">
                 <div class="sun-background"></div>
                 <h1 class="main-title">
-                    Developer<span class="v-logo">V</span>erse
+                    Developer
+                    <br class="mobile-break">
+                    <span>Verse</span>
                 </h1>
             </div>
 
@@ -63,9 +98,9 @@
                 </div>
 
                 <!-- Contact Button -->
-                <a href="#contact" class="contact-btn" id="heroContactBtn">
+                <button class="contact-btn" id="heroContactBtn">
                     📱 CONTACT FOR PROJECT
-                </a>
+                </button>
             </div>
         </section>
 
@@ -146,8 +181,8 @@
                 <div class="work-grid">
                     <!-- Website Projects -->
                     <div class="work-card" data-category="websites">
-                        <div class="work-image" style="height:300px; width:400px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-                            <img src="swami.png" alt="Swami Green Website" style="max-width:100%; max-height:100%; object-fit:contain;">
+                        <div class="work-image">
+                            <img src="/swami.png?height=300&width=400" alt="Swami Green Website">
                             <div class="work-overlay">
                                 <div class="work-buttons">
                                     <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Visit</a>
@@ -168,7 +203,7 @@
 
                     <div class="work-card" data-category="websites">
                         <div class="work-image">
-                            <img src="marconi.png" alt="Marconi Website" style="max-width:100%; max-height:100%; object-fit:contain;">
+                            <img src="/marconi.png?height=300&width=400" alt="Marconi Website">
                             <div class="work-overlay">
                                 <div class="work-buttons">
                                     <a href="#" class="work-btn live-btn" target="_blank">🔗 Live Visit</a>
@@ -336,7 +371,6 @@
                             <div class="success-icon">✅</div>
                             <h3>Message Sent Successfully!</h3>
                             <p>We'll get back to you within 24 hours.</p>
-                            <button class="close-success" id="closeSuccess">Close</button>
                         </div>
                     </div>
 
@@ -354,7 +388,7 @@
                             <div class="info-icon">📱</div>
                             <div class="info-content">
                                 <h4>WhatsApp</h4>
-                                <p>+91 8767884273</p>
+                                <p>+91 8767884273 <br>+91 8975795159</p>
                             </div>
                         </div>
 
@@ -414,22 +448,25 @@
                         <div class="footer-column">
                             <h3>Services</h3>
                             <ul>
-                                <li><a href="#services">Website Development</a></li>
-                                <li><a href="#services">Mobile App Development</a></li>
-                                <li><a href="#services">Student Projects</a></li>
-                                <li><a href="#services">Invitation Design</a></li>
-                                <li><a href="#services">Custom Software</a></li>
+                                <li><button class="footer-nav-link" data-target="services">Website Development</button>
+                                </li>
+                                <li><button class="footer-nav-link" data-target="services">Mobile App
+                                        Development</button></li>
+                                <li><button class="footer-nav-link" data-target="services">Student Projects</button>
+                                </li>
+                                <li><button class="footer-nav-link" data-target="services">Invitation Design</button>
+                                </li>
+                                <li><button class="footer-nav-link" data-target="services">Custom Software</button></li>
                             </ul>
                         </div>
 
                         <div class="footer-column">
                             <h3>Quick Links</h3>
                             <ul>
-                                <li><a href="#home">Home</a></li>
-                                <li><a href="#services">Services</a></li>
-                                <li><a href="#work">Our Work</a></li>
-                                <li><a href="#contact">Contact Us</a></li>
-                                <li><a href="#about">About Us</a></li>
+                                <li><button class="footer-nav-link" data-target="home">Home</button></li>
+                                <li><button class="footer-nav-link" data-target="services">Services</button></li>
+                                <li><button class="footer-nav-link" data-target="work">Our Work</button></li>
+                                <li><button class="footer-nav-link" data-target="contact">Contact Us</button></li>
                             </ul>
                         </div>
 

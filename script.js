@@ -22,6 +22,61 @@ function hideLoadingScreen() {
   }, loadingText.length * 100 + 1000);
 }
 
+// Mobile Navigation
+function setupMobileNavigation() {
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  mobileMenuBtn.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.contains("open");
+
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const target = e.target.getAttribute("data-target");
+      scrollToSection(target);
+      closeMobileMenu();
+    });
+  });
+
+  function openMobileMenu() {
+    mobileMenu.classList.add("open");
+    mobileMenuOverlay.classList.add("active");
+    mobileMenuBtn.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove("open");
+    mobileMenuOverlay.classList.remove("active");
+    mobileMenuBtn.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+// Navigation scroll effect
+function setupNavigationScroll() {
+  const navigation = document.getElementById("navigation");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navigation.classList.add("scrolled");
+    } else {
+      navigation.classList.remove("scrolled");
+    }
+  });
+}
+
 // Countdown Timer
 function startCountdown() {
   const targetDate = new Date();
@@ -63,14 +118,14 @@ function setupContactForm() {
   const whatsappBtn = document.getElementById("whatsappBtn");
 
   // Email form submission
-  contactForm.addEventListener("submit", function (e) {
+  contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const formData = new FormData(contactForm);
     const formObject = {};
 
     // Convert FormData to object
-    for (let [key, value] of formData.entries()) {
+    for (const [key, value] of formData.entries()) {
       formObject[key] = value;
     }
 
@@ -87,7 +142,7 @@ ${formObject.message}
         `;
 
     // Create mailto link
-    const mailtoLink = `mailto:developerverses@gmail.com?subject=${encodeURIComponent(
+    const mailtoLink = `mailto:developerverse@gmail.com?subject=${encodeURIComponent(
       emailSubject
     )}&body=${encodeURIComponent(emailBody)}`;
 
@@ -107,7 +162,7 @@ ${formObject.message}
   });
 
   // WhatsApp button handler
-  whatsappBtn.addEventListener("click", function () {
+  whatsappBtn.addEventListener("click", () => {
     const formData = new FormData(contactForm);
     const name = formData.get("name") || "Potential Client";
     const email = formData.get("email") || "Not provided";
@@ -134,68 +189,44 @@ Details: ${message}`;
   });
 }
 
-// Add some interactive effects
-function addInteractiveEffects() {
-  // Add mouse move effect to the sun background
-  const sunBackground = document.querySelector(".sun-background");
-  const hero = document.querySelector(".hero");
-
-  if (sunBackground && hero) {
-    hero.addEventListener("mousemove", (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      sunBackground.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    hero.addEventListener("mouseleave", () => {
-      sunBackground.style.transform =
-        "translate(-50%, -50%) rotateX(0deg) rotateY(0deg)";
+// Smooth scrolling function
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const offsetTop = element.offsetTop - 80;
+    window.scrollTo({
+      top: offsetTop,
+      behavior: "smooth",
     });
   }
 }
 
-// Smooth scrolling for navigation links
+// Setup smooth scrolling for all navigation links
 function setupSmoothScrolling() {
-  document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+  // Desktop navigation links
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const target = this.getAttribute("data-target");
+      scrollToSection(target);
     });
   });
 
-  // Also handle the contact button in hero section
-  const heroContactBtn = document.querySelector(
-    '.contact-btn[href="#contact"]'
-  );
+  // Footer navigation links
+  document.querySelectorAll(".footer-nav-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const target = this.getAttribute("data-target");
+      scrollToSection(target);
+    });
+  });
+
+  // Hero contact button
+  const heroContactBtn = document.getElementById("heroContactBtn");
   if (heroContactBtn) {
-    heroContactBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector("#contact");
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+    heroContactBtn.addEventListener("click", (e) => {
+      scrollToSection("contact");
     });
   }
 }
-
-// Existing code here
 
 // Work section filtering
 function setupWorkFiltering() {
@@ -227,26 +258,6 @@ function setupWorkFiltering() {
   });
 }
 
-// Smooth scrolling for all navigation
-function setupSmoothScrolling() {
-  // Handle all navigation links
-  document.querySelectorAll(".nav-link, #heroContactBtn").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        const offsetTop = targetElement.offsetTop - 80; // Account for fixed nav
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-}
-
 // Add scroll animations
 function setupScrollAnimations() {
   const observerOptions = {
@@ -257,21 +268,18 @@ function setupScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add("animate");
       }
     });
   }, observerOptions);
 
   // Observe service cards and work cards
   document.querySelectorAll(".service-card, .work-card").forEach((card) => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(30px)";
-    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
     observer.observe(card);
   });
 }
 
+// Back to top functionality
 function setupBackToTop() {
   const backToTopBtn = document.getElementById("backToTop");
 
@@ -293,14 +301,45 @@ function setupBackToTop() {
   });
 }
 
+// Add interactive effects
+function addInteractiveEffects() {
+  // Add mouse move effect to the sun background
+  const sunBackground = document.querySelector(".sun-background");
+  const hero = document.querySelector(".hero");
+
+  if (sunBackground && hero) {
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+
+      sunBackground.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    hero.addEventListener("mouseleave", () => {
+      sunBackground.style.transform =
+        "translate(-50%, -50%) rotateX(0deg) rotateY(0deg)";
+    });
+  }
+}
+
 // Initialize everything
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   createLoadingAnimation();
   hideLoadingScreen();
+  setupMobileNavigation();
+  setupNavigationScroll();
   startCountdown();
   setupContactForm();
-  addInteractiveEffects();
   setupSmoothScrolling();
   setupWorkFiltering();
   setupScrollAnimations();
+  setupBackToTop();
+  addInteractiveEffects();
 });
