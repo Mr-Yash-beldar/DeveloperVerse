@@ -6,6 +6,16 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family: "Orbitron", monospace;
   background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2d2d2d);
@@ -29,7 +39,10 @@ body {
 }
 
 .loading-text {
-  font-size: clamp(2rem, 8vw, 4rem);
+  font-size: clamp(1.5rem, 6vw, 4rem); /* smaller min for phones */
+  line-height: 1.2;
+  white-space: normal; /* allow wrapping on very small screens */
+  word-break: break-word;
   font-weight: 900;
   color: white;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
@@ -87,7 +100,7 @@ section {
 }
 
 .navigation.scrolled {
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2d2d2d);
+  background: rgba(0, 0, 0, 0.9);
   padding: 10px 0;
 }
 
@@ -186,7 +199,7 @@ section {
   position: fixed;
   top: 70px;
   right: -100%;
-  width: 280px;
+  width: min(80%, 280px);
   height: calc(100vh - 70px);
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(15px);
@@ -305,7 +318,7 @@ section {
 }
 
 .main-title {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-size: clamp(2rem, 7vw, 5.5rem);
   font-weight: 900;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
@@ -1312,7 +1325,10 @@ section {
   .hero {
     padding: 100px 15px 60px;
   }
-
+  section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .services-section,
   .work-section,
   .contact-section {
