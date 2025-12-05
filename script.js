@@ -77,38 +77,193 @@ function setupNavigationScroll() {
   });
 }
 
-// Countdown Timer
-function startCountdown() {
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 5); // 5 days from now
+// GitHub Projects Integration
+async function loadGitHubProjects() {
+  const projectsGrid = document.getElementById("projectsGrid");
+  const username = "Mr-Yash-beldar";
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate.getTime() - now;
+  // Show loading state
+  projectsGrid.innerHTML =
+    '<div class="loading-projects">Loading projects from GitHub... 🚀</div>';
 
-    if (distance < 0) {
-      document.getElementById("days").textContent = "0";
-      document.getElementById("hours").textContent = "0";
-      document.getElementById("minutes").textContent = "0";
-      document.getElementById("seconds").textContent = "0";
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${username}/repos?sort=updated&per_page=12`
+    );
+    const repos = await response.json();
+
+    if (!repos || repos.length === 0) {
+      showFallbackProjects();
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    projectsGrid.innerHTML = "";
 
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
+    repos.forEach((repo, index) => {
+      const projectCard = createProjectCard(repo, index);
+      projectCard.classList.add("animate"); // Make visible immediately
+      projectsGrid.appendChild(projectCard);
+    });
+
+    // Re-setup filtering after loading
+    setupWorkFiltering();
+
+    // Re-setup scroll animations for new cards
+    setupScrollAnimations();
+  } catch (error) {
+    console.error("Error loading GitHub projects:", error);
+    showFallbackProjects();
   }
+}
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+function createProjectCard(repo, index) {
+  const card = document.createElement("div");
+  card.className = "work-card";
+
+  // Determine category based on repo topics or name
+  const topics = repo.topics || [];
+  let category = "student";
+  if (
+    topics.includes("website") ||
+    topics.includes("web") ||
+    repo.name.includes("website")
+  ) {
+    category = "websites";
+  }
+  card.setAttribute("data-category", category);
+
+  // Create card content
+  card.innerHTML = `
+    <div class="work-image">
+      <div class="github-project-placeholder">
+        <div class="project-number">${index + 1}</div>
+        <div class="project-lang">${repo.language || "Code"}</div>
+      </div>
+      <div class="work-overlay">
+        <div class="work-buttons">
+          ${
+            repo.homepage
+              ? `<a href="${repo.homepage}" class="work-btn live-btn" target="_blank">🔗 Live Visit</a>`
+              : ""
+          }
+          <a href="${
+            repo.html_url
+          }" class="work-btn details-btn" target="_blank">💻 GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="work-content">
+      <h3>${repo.name.replace(/-/g, " ").replace(/_/g, " ")}</h3>
+      <p>${repo.description || "A project by DeveloperVerse"}</p>
+      <div class="work-tech">
+        ${repo.language ? `<span class="tech-tag">${repo.language}</span>` : ""}
+        ${
+          repo.topics
+            ? repo.topics
+                .slice(0, 3)
+                .map((topic) => `<span class="tech-tag">${topic}</span>`)
+                .join("")
+            : ""
+        }
+      </div>
+      <div class="work-stats">
+        <span class="stat-item">⭐ ${repo.stargazers_count}</span>
+        <span class="stat-item">🔱 ${repo.forks_count}</span>
+      </div>
+    </div>
+  `;
+
+  return card;
+}
+
+function showFallbackProjects() {
+  const projectsGrid = document.getElementById("projectsGrid");
+  projectsGrid.innerHTML = `
+    <!-- Website Projects -->
+    <div class="work-card animate" data-category="websites">
+      <div class="work-image">
+        <img src="swami.png" alt="Swami Green Website" style="display:block; width:100%; height:300px; object-fit:contain; border-radius:12px;">
+        <div class="work-overlay">
+          <div class="work-buttons">
+            <a href="https://github.com/Mr-Yash-beldar" class="work-btn details-btn" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>Swami Green Website</h3>
+        <p>Eco-friendly website with modern design and sustainable features</p>
+        <div class="work-tech">
+          <span class="tech-tag">HTML</span>
+          <span class="tech-tag">CSS</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card animate" data-category="websites">
+      <div class="work-image">
+        <img src="marconi.png" alt="Marconi Website" style="display:block; width:100%; height:300px; object-fit:contain; border-radius:12px;">
+        <div class="work-overlay">
+          <div class="work-buttons">
+            <a href="https://github.com/Mr-Yash-beldar" class="work-btn details-btn" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>Marconi Website</h3>
+        <p>Professional business website with advanced functionality</p>
+        <div class="work-tech">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Projects -->
+    <div class="work-card animate" data-category="student">
+      <div class="work-image">
+        <div class="github-project-placeholder">
+          <div class="project-number">3</div>
+          <div class="project-lang">PHP</div>
+        </div>
+        <div class="work-overlay">
+          <div class="work-buttons">
+            <a href="https://github.com/Mr-Yash-beldar" class="work-btn details-btn" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>Reclaim Tour & Travel</h3>
+        <p>Complete travel booking system with user management</p>
+        <div class="work-tech">
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">MySQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card animate" data-category="student">
+      <div class="work-image">
+        <div class="github-project-placeholder">
+          <div class="project-number">4</div>
+          <div class="project-lang">Python</div>
+        </div>
+        <div class="work-overlay">
+          <div class="work-buttons">
+            <a href="https://github.com/Mr-Yash-beldar" class="work-btn details-btn" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>Course Cloud</h3>
+        <p>Online learning management system for educational institutions</p>
+        <div class="work-tech">
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">Python</span>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 // Contact Form Handler
@@ -219,13 +374,15 @@ function setupSmoothScrolling() {
     });
   });
 
-  // Hero contact button
-  const heroContactBtn = document.getElementById("heroContactBtn");
-  if (heroContactBtn) {
-    heroContactBtn.addEventListener("click", (e) => {
-      scrollToSection("contact");
+  // Hero buttons
+  document.querySelectorAll(".hero-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const target = this.getAttribute("data-target");
+      if (target) {
+        scrollToSection(target);
+      }
     });
-  }
+  });
 }
 
 // Work section filtering
@@ -335,10 +492,9 @@ document.addEventListener("DOMContentLoaded", () => {
   hideLoadingScreen();
   setupMobileNavigation();
   setupNavigationScroll();
-  startCountdown();
+  loadGitHubProjects(); // Load GitHub projects
   setupContactForm();
   setupSmoothScrolling();
-  setupWorkFiltering();
   setupScrollAnimations();
   setupBackToTop();
   addInteractiveEffects();

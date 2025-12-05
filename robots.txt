@@ -1,0 +1,29 @@
+# robots.txt for DeveloperVerse
+# https://www.developerverse.tech/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /assets/private/
+
+# Sitemap location
+Sitemap: https://www.developerverse.tech/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Allow common bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
